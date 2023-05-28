@@ -32,11 +32,15 @@ export default function MessageList() {
     }, [messages]);
 
     if (status === 'loading') {
-        return <p>Loading...</p>;
+        return (
+            <div className="messageList loaderContainer">
+                <span className="loader"></span>
+            </div>
+        );
     }
 
     if (status === 'error' || error) {
-        return <p>Error: Failed to fetch messages.</p>;
+        return <p className="errorText">Error: Failed to fetch messages.</p>;
     }
 
     return (
