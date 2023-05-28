@@ -3,9 +3,10 @@ import { collection, addDoc, getFirestore } from 'firebase/firestore';
 import { motion } from 'framer-motion';
 import { BsEmojiSmile } from 'react-icons/bs';
 import { BsFillSendFill } from 'react-icons/bs';
-import { AiOutlineLoading } from 'react-icons/ai';
 import '../App.css';
+import Picker from 'emoji-picker-react';
 const MessagesCollection = collection(getFirestore(), 'messages');
+
 
 const iconVariants = {
     initial: { scale: 1 },
@@ -16,6 +17,7 @@ const bubbleVariants = {
     initial: { opacity: 0, scale: 0 },
     visible: { opacity: 1, scale: 1 },
 };
+
 
 export default function AddMessage() {
     const [newMessage, setNewMessage] = useState('');
@@ -38,7 +40,13 @@ export default function AddMessage() {
             handleSend();
         }
     };
+    const handleEmojiClick = (emojiObject) => {
+        const emoji = emojiObject.emoji;
+        const modifiedEmoji = emoji;
 
+        setNewMessage((prevMessage) => prevMessage + modifiedEmoji);
+        setShowEmojiPicker(false); // Close the emoji picker after selecting an emoji
+    };
 
 
     return (
@@ -65,7 +73,7 @@ export default function AddMessage() {
                         exit="initial"
                     >
                         <div className="loading">
-                            <AiOutlineLoading className="loadingIcon" />
+
                         </div>
                     </motion.div>
                 ) : null}
@@ -79,6 +87,11 @@ export default function AddMessage() {
                     <BsFillSendFill className="messageSendIcon" />
                 </motion.button>
             </div>
+            {showEmojiPicker && (
+                <div className="emojiPickerContainer">
+                    <Picker onEmojiClick={handleEmojiClick} />
+                </div>
+            )}
         </div>
     );
 }
