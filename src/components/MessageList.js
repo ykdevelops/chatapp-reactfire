@@ -44,31 +44,31 @@ export default function MessageList() {
     }
 
     return (
-        <>
-            <ul className="messageList">
-                <AnimatePresence initial={false}>
-                    {messages.map((message) => (
-                        <motion.li
-                            key={message.id}
-                            className={`messageRow`}
-                            onMouseEnter={() => setHoveredRow(message.id)}
-                            onMouseLeave={() => setHoveredRow(null)}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            {hoveredRow === message.id && (
-                                <button className="messageDeleteIcon" onClick={() => deleteMessage(message.id)}>
-                                    <AiOutlineDelete className="messageDeleteIcon" />
-                                </button>
-                            )}
-                            <div className="messageBubble">{message.text}</div>
-                        </motion.li>
-                    ))}
-                </AnimatePresence>
-                <div ref={messagesEndRef} />
-            </ul>
-        </>
+
+        <ul className="messageList row">
+            <AnimatePresence initial={false}>
+                {messages.map((message) => (
+                    <motion.li
+                        key={message.id}
+                        className={`messageRow`}
+                        onMouseEnter={() => setHoveredRow(message.id)}
+                        onMouseLeave={() => setHoveredRow(null)}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        {hoveredRow === message.id && (
+                            <button className="messageDeleteIcon" onClick={() => deleteMessage(message.id)}>
+                                <AiOutlineDelete className="messageDeleteIcon" />
+                            </button>
+                        )}
+                        <div className="messageBubble">{message.text}</div>
+                    </motion.li>
+                ))}
+            </AnimatePresence>
+            <div ref={messagesEndRef} />
+        </ul>
+
     );
 }

@@ -1,39 +1,57 @@
-.App {
+.chatBackground {
+  background-color: #687893;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   position: fixed;
+  left: 0;
+  top: 0;
 }
-html {
-  background-color: #687893;
-}
-
 .chatBox {
   display: flex;
   align-items: center;
   flex-direction: column;
   border: solid black 1px;
-  height: 700px;
+  height: 90%;
+
   width: 90%;
   max-width: 500px;
   position: fixed;
   background: linear-gradient(to right, #181d1f, #0a171e);
-  border-radius: 4%;
+  border-radius: 10px;
   box-shadow: 8px 8px 86px rgba(0, 0, 0, 0.4);
 }
-.profilePhoto {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.row {
+  flex: 1; /* Distribute the available space equally among the rows */
 }
-.textColumn {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+@media (min-height: 701px) {
+  .row:nth-child(1) {
+    flex: 1 0 10%; /* 1/5 height */
+  }
+  .row:nth-child(2) {
+    flex: 1 0 80%; /* 3/5 height */
+  }
+  .row:nth-child(3) {
+    flex: 1 0 10%; /* 1/5 height */
+  }
 }
+
+@media (max-height: 700px) {
+  .row:nth-child(1) {
+    flex: 1 0 20%; /* 1/5 height */
+  }
+  .row:nth-child(2) {
+    flex: 1 0 60%; /* 3/5 height */
+  }
+  .row:nth-child(3) {
+    flex: 1 0 20%; /* 1/5 height */
+  }
+}
+
+/* #region Title */
 .appTitleRow {
   display: flex;
   justify-content: flex-start;
@@ -41,6 +59,11 @@ html {
   width: 80%;
   border-bottom: solid #1b2930 2px;
   height: 100px;
+}
+.profilePhoto {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 .appTitle {
   font-size: 1.1rem;
@@ -57,22 +80,23 @@ html {
   padding-left: 1rem;
   padding-top: 0.2rem;
 }
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+/* #endregion Title */
 
 /* #region MessageList */
 .messageList {
   list-style-type: none;
-  height: 100%;
-  max-height: 530px;
-  width: 90%;
-  max-width: 500px;
-  position: fixed;
   overflow: scroll;
   padding: 0px;
-  margin-top: 101px;
+  margin: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 100px;
+  width: 100%;
 }
 .messageRow {
   position: relative;
@@ -96,7 +120,6 @@ html {
   max-width: 200px;
   word-wrap: break-word;
 }
-
 .messageDeleteButton {
   border: none;
   background-color: transparent;
@@ -106,21 +129,56 @@ html {
   background-color: transparent;
   border: none;
 }
+@-webkit-keyframes ellipsis {
+  to {
+    width: 1.25em;
+  }
+}
+.loaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Adjust as needed */
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid #fff;
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.errorText {
+  color: red;
+}
+
 /* #endregion MessageList */
 
 /* #region AddMessage */
 .addBoxRow {
-  position: absolute;
-  width: 100%;
+  width: 90%;
   bottom: 0px;
   display: flex;
   flex-direction: row;
-  height: 6rem;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
+  border-top: #1b2930 solid 1px;
 }
 .addBox {
-  width: 90%;
+  width: 100%;
   max-width: 450px;
   background-color: #202d34;
   border-radius: 20px;
@@ -183,22 +241,9 @@ input:focus {
   outline: none; /* Remove the default highlight */
   border: none; /* Remove the border */
 }
-/* #endregion AddMessage */
 .newMessage {
   animation: fadeOutToTop 0.3s ease-in-out;
 }
-
-@keyframes fadeInFromBottom {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes fadeOutToTop {
   from {
     opacity: 1;
@@ -234,37 +279,4 @@ input:focus {
   }
 }
 
-@-webkit-keyframes ellipsis {
-  to {
-    width: 1.25em;
-  }
-}
-.loaderContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%; /* Adjust as needed */
-}
-
-.loader {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: inline-block;
-  border-top: 3px solid #fff;
-  border-right: 3px solid transparent;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.errorText {
-  color: red;
-}
+/* #endregion AddMessage */

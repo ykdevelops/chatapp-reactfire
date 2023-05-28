@@ -50,7 +50,7 @@ export default function AddMessage() {
 
 
     return (
-        <div className="addBoxRow">
+        <div className="addBoxRow row">
             <div className="addBox">
                 <motion.button variants={iconVariants}
                     initial="initial"
