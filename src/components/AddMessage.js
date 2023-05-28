@@ -52,9 +52,11 @@ export default function AddMessage() {
     return (
         <div className="addBoxRow">
             <div className="addBox">
-                <button className="messageInputButton" onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+                <motion.button variants={iconVariants}
+                    initial="initial"
+                    whileHover="hover" className="messageInputButton" onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
                     <BsEmojiSmile className="messageInputIcon" />
-                </button>
+                </motion.button>
                 <input
                     className="addInput"
                     type="text"
