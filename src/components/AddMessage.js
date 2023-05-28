@@ -1,16 +1,28 @@
 import React, { useState } from 'react';
 import { collection, addDoc, getFirestore } from 'firebase/firestore';
-import '../App.css';
-import { BsFillSendFill } from 'react-icons/bs';
+import { motion } from 'framer-motion';
 import { BsEmojiSmile } from 'react-icons/bs';
-
+import { BsFillSendFill } from 'react-icons/bs';
+import { AiOutlineLoading } from 'react-icons/ai';
+import '../App.css';
 const MessagesCollection = collection(getFirestore(), 'messages');
+
+const iconVariants = {
+    initial: { scale: 1 },
+    hover: { scale: 1.2 },
+};
+
+const bubbleVariants = {
+    initial: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1 },
+};
 
 export default function AddMessage() {
     const [newMessage, setNewMessage] = useState('');
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
-    const handleKeyDown = async (e) => {
-        if (e.key === 'Enter') {
+    const handleSend = async () => {
+        if (newMessage.trim() !== '') {
             await addDoc(MessagesCollection, {
                 text: newMessage,
                 timestamp: Date.now(),
@@ -20,10 +32,19 @@ export default function AddMessage() {
         }
     };
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSend();
+        }
+    };
+
+
+
     return (
         <div className="addBoxRow">
             <div className="addBox">
-                <button className="messageInputButton">
+                <button className="messageInputButton" onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
                     <BsEmojiSmile className="messageInputIcon" />
                 </button>
                 <input
@@ -34,11 +55,30 @@ export default function AddMessage() {
                     onChange={(e) => setNewMessage(e.target.value)}
                     onKeyDown={handleKeyDown}
                 />
-                <button className="messageSendButton">
+
+                {newMessage ? (
+                    <motion.div
+                        className="ellipseContainer"
+                        variants={bubbleVariants}
+                        initial="initial"
+                        animate="visible"
+                        exit="initial"
+                    >
+                        <div className="loading">
+                            <AiOutlineLoading className="loadingIcon" />
+                        </div>
+                    </motion.div>
+                ) : null}
+                <motion.button
+                    className="messageSendButton"
+                    onClick={handleSend}
+                    variants={iconVariants}
+                    initial="initial"
+                    whileHover="hover"
+                >
                     <BsFillSendFill className="messageSendIcon" />
-                </button>
+                </motion.button>
             </div>
         </div>
     );
 }
-
