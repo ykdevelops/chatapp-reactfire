@@ -1,38 +1,148 @@
 .App {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+}
+html {
+  background-color: #687893;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.chatBox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: solid black 1px;
+
+  height: 700px;
+  width: 500px;
+  position: fixed;
+  background: linear-gradient(to right, #181d1f, #0a171e);
+  border-radius: 20px;
+}
+.profilePhoto {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.appTitleRow {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+  border-bottom: solid #1b2930 2px;
+  height: 100px;
+}
+.appTitle {
+  font-size: 1.1rem;
+  padding-left: 1rem;
+  color: #e1e5e5;
+  font-family: "Nunito", sans-serif;
+  margin: 0px;
+}
+.userStatus {
+  font-size: 1rem;
+  font-family: "Nunito", sans-serif;
+  color: #4b8e55;
+  margin: 0px;
+  padding-left: 1rem;
+  padding-top: 0.2rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* #region MessageList */
+.messageList {
+  list-style-type: none;
+  height: 100%;
+  max-height: 530px;
+  width: 500px;
+  position: fixed;
+  overflow: scroll;
+  padding: 0px;
+  margin-top: 101px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
+}
+.messageRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 80%;
+  padding: 1rem 1rem 0.5rem 1rem;
+}
+.messageBubble {
+  display: inline-block;
+  background-color: #0070da;
+  color: #e1e5e5;
+  padding: 0.5rem;
+  border-radius: 7px 7px 0px 7px;
+  font-family: "Nunito", sans-serif;
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+.messageDeleteButton {
+  border: none;
+  background-color: transparent;
+}
+.messageDeleteIcon {
+  color: #e1e5e5;
+  background-color: transparent;
+  border: none;
+}
+/* #endregion MessageList */
+
+/* #region AddMessage */
+.addBoxRow {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  display: flex;
+  flex-direction: row;
+  height: 6rem;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
-
-.App-link {
-  color: #61dafb;
+.addBox {
+  width: 85%;
+  background-color: #202d34;
+  border-radius: 20px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.addInput {
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+  padding-left: 1rem;
+  background-color: #202d34;
+  width: 70%;
+  height: 3rem;
+  font-family: "Nunito", sans-serif;
+  color: #e1e5e5;
 }
+.messageInputButton {
+  border: none;
+  background-color: transparent;
+  padding-left: 1rem;
+  height: 100%;
+}
+.messageInputIcon {
+  color: #e1e5e5;
+  transform: translateY(2px);
+  border: none;
+  padding-top: 10px;
+}
+input:focus {
+  outline: none; /* Remove the default highlight */
+  border: none; /* Remove the border */
+}
+/* #endregion AddMessage */

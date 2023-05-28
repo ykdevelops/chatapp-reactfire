@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import MessageList from './components/MessageList';
+import AddMessage from './components/AddMessage';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='chatBox'>
+        <div className='appTitleRow'>
+          <img src="/profilePhoto.png" alt="profilePhoto" className='profilePhoto' />
+          <div className='textColumn'>
+            <h1 className='appTitle'>Ethan Anderson</h1>
+            <h2 className='userStatus'>Online</h2>
+          </div>
+
+        </div>
+
+        <MessageList />
+        <AddMessage />
+      </div>
+
     </div>
   );
 }
