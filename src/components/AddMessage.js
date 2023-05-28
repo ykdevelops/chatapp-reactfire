@@ -44,9 +44,7 @@ export default function AddMessage() {
                     onChange={(e) => setNewMessage(e.target.value)}
                     onKeyDown={handleKeyDown}
                 />
-                <button className="messageInputButton">
-                    <CiMicrophoneOn className="messageInputIcon" />
-                </button>
+
                 <button className="messageSendButton">
                     <BsFillSendFill className="messageSendIcon" />
                 </button>
