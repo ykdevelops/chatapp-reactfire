@@ -75,7 +75,6 @@ export default function AddMessage() {
                         exit="initial"
                     >
                         <div className="loading">
-
                         </div>
                     </motion.div>
                 ) : null}

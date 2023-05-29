@@ -256,11 +256,10 @@ input:focus {
 }
 .loading {
   position: absolute;
-  top: -20px; /* Adjust the value based on your needs */
-  right: 50px;
   font-size: 30px;
-  top: -20px;
   color: white;
+  transform: translateY(-80px);
+  right: 50px;
 }
 
 .loading:after {
