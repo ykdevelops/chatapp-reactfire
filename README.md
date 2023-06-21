@@ -10,9 +10,7 @@ ChatApp-ReactFire is a simple, yet sophisticated, real-time chat application dev
 
 ## Features
 
-- User Authentication
 - Real-time messaging
-- Create new chat rooms
 - Join existing chat rooms
 
 ## Installation and Setup
